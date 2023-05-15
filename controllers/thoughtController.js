@@ -46,39 +46,39 @@ module.exports = {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
-      { runValidators: true, New: true }
+      { runValidators: true, new: true }
     )
-    .then((user) =>{
-        if(user){
-            res.status(200).json(user)
-        }else{
-            res.status(404).json({ message: "Thought not available." })
+      .then((thought) => {
+        if (thought) {
+          res.status(200).json(thought);
+        } else {
+          res.status(404).json({ message: "Thought not available." });
         }
-    })
-    .catch((err) => res.status(500).json(err));
+      })
+      .catch((err) => res.status(500).json(err));
   },
   //delete a thought
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
-    .then((thought) => {
-        if(thought){
-            User.findOneAndUpdate(
-                { thoughts: req.params.thoughtId },
-                { $pull: { thoughts: req.params.thoughtId } },
-                { new: true }
-            )
-        }else{
-            res.status(404).json({ message: "Thought not available." })
+      .then((thought) => {
+        if (thought) {
+          return User.findOneAndUpdate(
+            { thoughts: req.params.thoughtId },
+            { $pull: { thoughts: req.params.thoughtId } },
+            { new: true }
+          );
+        } else {
+          res.status(404).json({ message: "Thought not available." });
         }
-    })
-    .then((user) => {
-        if(user){
-            res.status(200).json({ message: 'Thought deleted.' })
-        }else{
-            res.status(404).json({ message: 'User not found'})
+      })
+      .then((user) => {
+        if (user) {
+          res.status(200).json({ message: 'Thought deleted.' });
+        } else {
+          res.status(404).json({ message: 'Thought not found' });
         }
-    })
-    .catch((err) => res.status(500).json(err));
+      })
+      .catch((err) => res.status(500).json(err));
   },
   //create reaction
   createReaction(req, res) {
