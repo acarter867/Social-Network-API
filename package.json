@@ -2,6 +2,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "moment": "^2.29.4",
+    "mongod": "^2.0.0",
+    "mongodb": "^5.5.0",
     "mongoose": "^7.1.1"
   }
 }
