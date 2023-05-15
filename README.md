@@ -6,6 +6,7 @@
 - [Contribution](#Contribution)
 - [Testing](#Testing)
 - [License](#License)
+- [Walkthrough](#Walkthrough)
 - [Github](#Github)
 
 
@@ -26,6 +27,8 @@ N/A
 
 ## License 
 https://opensource.org/licenses/MIT
+
+## Walkthrough
 
 ## Github
 acarter867
